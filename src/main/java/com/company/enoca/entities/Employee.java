@@ -1,8 +1,10 @@
 package com.company.enoca.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -14,6 +16,7 @@ import java.util.Date;
 @Table(name = "employee")
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class Employee {
     @Id
     @Column(name="id")
@@ -33,6 +36,11 @@ public class Employee {
     private String mailAddress;
     @Column(name = "hire_date")
     private Date hireDate;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
 
     @Column(updatable = false)
     @CreationTimestamp
@@ -40,16 +48,15 @@ public class Employee {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    Employee(Long id,String firstName,String lastName,String phoneNumber,String mailAddress,Date hireDate){
+    Employee(Long id,String firstName,String lastName,String phoneNumber,String mailAddress,Date hireDate,Company company){
         this.id=id;
         this.firstName=firstName;
         this.lastName=lastName;
         this.phoneNumber=phoneNumber;
         this.mailAddress=mailAddress;
         this.hireDate=hireDate;
+        this.company=company;
     }
 
-    public Employee() {
 
-    }
 }

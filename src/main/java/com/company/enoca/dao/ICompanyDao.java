@@ -10,4 +10,8 @@ public interface ICompanyDao {
     List<Company> getAll();
 
     String delete(Long id);
+
+    Company getCompanyById(Long id);
+
+    Company getCompanyEmployeesById(Long id);
 }

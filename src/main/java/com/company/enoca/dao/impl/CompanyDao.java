@@ -34,4 +34,14 @@ public class CompanyDao implements ICompanyDao {
         companyRepository.deleteById(id);
         return "successfully deleted";
     }
+
+    @Override
+    public Company getCompanyById(Long id) {
+        return companyRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Company getCompanyEmployeesById(Long id) {
+        return companyRepository.findById(id).orElse(null);
+    }
 }

@@ -4,5 +4,5 @@ public enum CompanyStatus {
     open,
     close,
     non_businees_day,
-    lunchTime
+    lunchTime;
 }
